@@ -14,8 +14,8 @@ export class ReceiveDataComponent implements OnInit {
 
   ngOnInit(): void {
     this.webSockt.asObservable().subscribe(dataFromServer => {
-      this.message = dataFromServer;
-      console.log(dataFromServer);
+    //   this.message = dataFromServer;
+    //   console.log(dataFromServer);
     });
 
     // this.webSockt.subscribe(
