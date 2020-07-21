@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "web-socket-app"
+    }
+  },
+  "defaultProject": "web-socket-app",
+  "cli": {
+    "analytics": false
+  }
 }
