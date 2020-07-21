@@ -7,22 +7,25 @@ import {webSocket} from 'rxjs/webSocket';
   styleUrls: ['./receive-data.component.css']
 })
 export class ReceiveDataComponent implements OnInit {
-  //webSockt: WebSocket;
-  private webSockt = webSocket('ws://localhost:8000');
-
   public message: any;
+  private webSockt = webSocket('ws://localhost:8000');
 
   constructor() { }
 
   ngOnInit(): void {
-    this.webSockt.subscribe(
-      msg => {
-        console.log('message received: ' + msg);
-        this.message = msg;
-        }, // Called whenever there is a message from the server.
-      err => console.log(err), // Called if at any point WebSocket API signals some kind of error.
-      () => console.log('complete') // Called when connection is closed (for whatever reason).
-    );
+    this.webSockt.asObservable().subscribe(dataFromServer => {
+      this.message = dataFromServer;
+      console.log(dataFromServer);
+    });
+
+    // this.webSockt.subscribe(
+    //   msg => {
+    //     console.log('message received: ' + msg);
+    //     this.message = msg;
+    //     }, // Called whenever there is a message from the server.
+    //   err => console.log(err), // Called if at any point WebSocket API signals some kind of error.
+    //   () => console.log('complete') // Called when connection is closed (for whatever reason).
+    // );
 
     // this.webSockt = new WebSocket('ws://localhost:8000');
     //
