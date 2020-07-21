@@ -7,12 +7,15 @@ import {webSocket} from 'rxjs/webSocket';
   styleUrls: ['./send-data.component.css']
 })
 export class SendDataComponent implements OnInit {
-  p//rivate myWebSocket = webSocket('ws://127.0.0.1:8080');
+  private myWebSocket = webSocket('ws://localhost:8000');
 
   constructor() { }
 
   ngOnInit(): void {
-    //this.myWebSocket.next({message: 'some message'});
+
   }
 
+  sendData() {
+    this.myWebSocket.next({message: 'some message'});
+  }
 }
