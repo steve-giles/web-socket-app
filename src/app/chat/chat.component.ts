@@ -8,13 +8,12 @@ import {webSocket} from 'rxjs/webSocket';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
-  //private myWebSocket = webSocket('ws://localhost:8000');
-  private myWebSocket;
+  // private myWebSocket = webSocket('ws://localhost:8000');
+  private myWebSocket: WebSocketSubject<any>;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.connect();
   }
 
   connect() {
@@ -24,7 +23,7 @@ export class ChatComponent implements OnInit {
       // Called whenever there is a message from the server
       msg => {
         debugger;
-        console.log('text received: ' + msg);
+        console.log('text received: ' + JSON.stringify(msg));
       },
       // Called whenever there is a message from the server
       err => {
@@ -50,7 +49,7 @@ export class ChatComponent implements OnInit {
 
   sendData() {
     console.log('sent msg');
-    //this.myWebSocket.next({message: 'some message'});
-    this.myWebSocket.next('message from client');
+    this.myWebSocket.next({message: 'some message'});
+    //this.myWebSocket.next('message from client');
   }
 }

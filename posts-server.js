@@ -21,10 +21,12 @@ var server = ws.createServer(function (conn) {
     console.log("Received "+str)
 
     // send a response back to the client
-    conn.sendText(str.toUpperCase()+"!!!");
+    conn.sendText(str.toUpperCase());
+    //conn.send({message: "to all clients"});
 
     // send a message to all clients
-    broadcast(server, "to all clients");
+    //broadcast(server, "to all clients");
+    //broadcast(server, {message: "to all clients"});
   })
   conn.on("close", function (code, reason) {
     console.log("Connection closed")
@@ -47,7 +49,9 @@ server.listen(port,(err) => {
  * @param msg
  */
 function broadcast(server, msg) {
+  console.log('Broadcast message to clients: ' + server.connections.length);
   server.connections.forEach(function (conn) {
-    conn.sendText(msg)
+    console.log(msg);
+    conn.sendText(msg);
   })
 }
