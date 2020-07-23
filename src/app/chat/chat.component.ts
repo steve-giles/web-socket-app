@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 import {WebSocketSubject} from 'rxjs/internal-compatibility';
 import {webSocket} from 'rxjs/webSocket';
 
@@ -7,49 +7,49 @@ import {webSocket} from 'rxjs/webSocket';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit {
-  // private myWebSocket = webSocket('ws://localhost:8000');
+export class ChatComponent {
   private myWebSocket: WebSocketSubject<any>;
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
-
+  /**
+   * Connect to the socket service
+   */
   connect() {
     this.myWebSocket = webSocket('ws://localhost:8000');
 
     this.myWebSocket.subscribe(
       // Called whenever there is a message from the server
       msg => {
-        debugger;
         console.log('text received: ' + JSON.stringify(msg));
       },
       // Called whenever there is a message from the server
       err => {
-        debugger;
         console.log(err);
       },
       // Called if WebSocket API signals some kind of error
       () => {
-        debugger;
         console.log('complete');
       }
-      // Called when connection is closed (for whatever reason)
     );
   }
 
+  /**
+   * Disconnect from the socket service
+   */
   disconnect() {
-    console.log('Disconnected');
     if (this.myWebSocket) {
       this.myWebSocket.complete();
       this.myWebSocket = null;
+      console.log('Disconnected');
     }
   }
 
+  /**
+   * Send data to the socket service
+   */
   sendData() {
     console.log('sent msg');
     this.myWebSocket.next({message: 'some message'});
-    //this.myWebSocket.next('message from client');
   }
 }

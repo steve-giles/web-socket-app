@@ -18,15 +18,13 @@ var server = ws.createServer(function (conn) {
   });
   conn.on("text", function (str) {
     // Emitted when a text is received. str is a string
-    console.log("Received "+str)
+    console.log("Received " + str)
 
     // send a response back to the client
     conn.sendText(str.toUpperCase());
-    //conn.send({message: "to all clients"});
 
-    // send a message to all clients
-    //broadcast(server, "to all clients");
-    //broadcast(server, {message: "to all clients"});
+    // send the message to all clients
+    broadcast(server, str);
   })
   conn.on("close", function (code, reason) {
     console.log("Connection closed")
@@ -37,7 +35,7 @@ var server = ws.createServer(function (conn) {
 });
 
 /**
- * Starts accepting connections on a given port and host.
+ * Starts accepting connections for the given port
  */
 server.listen(port,(err) => {
   console.log(`server listening on ${port}`)
