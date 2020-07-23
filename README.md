@@ -1,10 +1,12 @@
 # WebSocketApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
+Angular application to demonstrate [Nodejs Websocket](https://www.npmjs.com/package/nodejs-websocket) technology. 
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm run server` to start the websocket server.
+
+Run `ng serve` to start the client app which communicates to the websocket server. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
