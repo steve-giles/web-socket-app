@@ -3,3 +3,7 @@
 <input type="button" (click)="sendData()" value="Send">
 <input type="button" (click)="connect()" value="Connect">
 <input type="button" (click)="disconnect()" value="Disconnect">
+<div>
+{{connectionStatus | async}}
+
+</div>
