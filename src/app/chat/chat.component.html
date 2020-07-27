@@ -1,9 +1,20 @@
 <h2>Chat Component</h2>
 <p>Angular application to demonstrate Nodejs Websocket technology.</p>
-<input type="button" (click)="sendData()" value="Send">
-<input type="button" (click)="connect()" value="Connect">
-<input type="button" (click)="disconnect()" value="Disconnect">
-<div>
-{{connectionStatus | async}}
-
+<input type="button" (click)="connection.sendData()" value="Send">
+<input type="button" (click)="connection.connect()" value="Connect">
+<input type="button" (click)="connection.disconnect()" value="Disconnect">
+<div class="app-info">
+  <ng-template #notConnected>
+    <em>
+      Connection:
+      <mat-icon [class.connection]="true">flash_off</mat-icon>
+      Not connected
+    </em>
+  </ng-template>
+  <em *ngIf="connection.connectionStatus | async; else notConnected">
+    Connection:
+    <mat-icon [class.connection]="true">flash_on</mat-icon>
+    Connected
+  </em><br/>
+  <em>Version: ###</em><br/>
 </div>
