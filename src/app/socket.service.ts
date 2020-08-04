@@ -20,7 +20,8 @@ export class SocketService {
   public connect() {
     // create the rxjs webSocket and subscribe to connect and disconnect state changes
     this.client = webSocket({
-      url: 'ws://localhost:8000',
+      // url: 'ws://localhost:8000',
+      url: 'wss://sockets.hceutesting.com/app',
       openObserver: this.connectionStateChange,
       closeObserver: this.connectionStateChange
     });
